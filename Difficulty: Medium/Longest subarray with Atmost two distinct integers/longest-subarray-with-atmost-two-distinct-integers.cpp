@@ -1,0 +1,27 @@
+class Solution {
+  public:
+    int totalElements(vector<int> &arr) {
+        // code here
+        unordered_map<int,int> mp;
+        
+        int i=0;
+        int j=0;
+        
+        int ans = 0;
+        
+        while(j<arr.size()){
+            mp[arr[j]]++;
+            
+            while(mp.size()>2){
+                mp[arr[i]]--;
+                if(mp[arr[i]]==0) mp.erase(arr[i]);
+                i++;
+            }
+            
+            ans = max(ans,j-i+1);
+            j++;
+        }
+        
+        return ans;
+    }
+};
